@@ -6,6 +6,8 @@ This repository contains files useful for spellchecking text against a list of k
 ## Curated List
 The curated list was generated from Benutzer:HRoestTypo/replacedDerivatives
 
+## Common words
+The files `lists/de/common_n.dic` contain words that at least `n` times in the German Wikipedia.
 
 ## Article tiles
 The files `lists/de/titles_de.txt` and  `lists/en/titles_en.txt` contain a list
