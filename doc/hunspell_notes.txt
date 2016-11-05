@@ -1,10 +1,45 @@
 
-### 39 replacement suggestions in 60 pages
-###  -> of these I accept 10 (25%)
-###  -> 72 words (19 accepted)
-###  -> 113 words (33 accepted) -> 29%
-###     => 4 got removed by hunspell
-## get http://packages.ubuntu.com/de/wily/hunspell-de-med
+Hunspell uses a dictionary (dic) of words and a rule set to build words (.aff).
+
+== Affix files==
+
+See http://www.openoffice.org/lingucomponent/affix.readme
+
+$ man 4 hunspell
+
+=== German affix rules === 
+
+COMPOUNDBEGIN x
+COMPOUNDMIDDLE y
+COMPOUNDEND z
+COMPOUNDPERMITFLAG c # Affixes with COMPOUNDPERMITFLAG may be inside of compounds.
+ONLYINCOMPOUND o # only in compounds
+
+NEEDAFFIX h # virtuals stems, only valid with affixes
+
+m -> allows uppercase words to prepend a "-" and make lowercase
+m -> allows lowercase words to prepend a "-" and make uppercase
+
+B -> -bar / -bare / -barem ... 
+U -> un-
+
+ij -> allow prefix and suffix with -xxx and xxx-
+m -> allow compound words with word in the middle
+P -> allow adding -en
+
+
+example:
+
+Arbeit/Pm
+arbeit/Pozm
+
+Arbeits/hij
+arbeits/hke
+
+
+this will allow the word "arbeits" to be used inside a compound word. The hij scheme will make it correct as a starting word, the hke scheme as a middle compound word (but not as an end word).
+
+=== Example ===
 
 Affix example (see .aff):
 
@@ -25,26 +60,21 @@ verwertbar/AU
 where U = means that also "unverwertbar" is correct 
 where A  = "-bare", "barer", "baren", "barem", "bares" are correct words.
 
-For compound words, the definitions are i/j, e.g. 
-
-Arbeits/hij
-
-while h says that it needs a sort of affix (in total there are 2176 hij words in the dict that only are correct because they are compound words)
-
 doktorieren/DIXY
-
 
 where D = "doktorierend doktorierende doktorierendem"
 where I = "doktoriere"
 where O = "doktoriertes doktorierten doktorierter doktoriertem" => no adjektiv!
 
 
+abkapseln/DIXY
 abkapseln/SJozm
 
-where S = "Abkapselns"
-where J = "Abkapselung Abkapselungen Abkapslung"
+where o = only in compound words
+where z = use at end of compound word
 where m = "-abkapselns"
-
+where S = "abkapselns"
+where J = "abkapselung Abkapselungen Abkapslung"
 
 Stand/STmij
 
@@ -52,8 +82,6 @@ where S = "Stands"
 where T = "Standes"
 
 Stanz/mij
-
-
 Spann/SEmij
 
 
@@ -82,7 +110,6 @@ where m = "-stoff"  (prefix only)
 zypressenwald/STozm
 
 -> o = only in compound
-
 
 Drehinversionsachse
  
@@ -120,4 +147,14 @@ where m = "-programm"
 where T = "Programmes"
 where mij = start is possible
 
+
+
+
+
+### 39 replacement suggestions in 60 pages
+###  -> of these I accept 10 (25%)
+###  -> 72 words (19 accepted)
+###  -> 113 words (33 accepted) -> 29%
+###     => 4 got removed by hunspell
+## get http://packages.ubuntu.com/de/wily/hunspell-de-med
 
