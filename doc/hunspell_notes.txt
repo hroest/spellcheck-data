@@ -1,0 +1,123 @@
+
+### 39 replacement suggestions in 60 pages
+###  -> of these I accept 10 (25%)
+###  -> 72 words (19 accepted)
+###  -> 113 words (33 accepted) -> 29%
+###     => 4 got removed by hunspell
+## get http://packages.ubuntu.com/de/wily/hunspell-de-med
+
+Affix example (see .aff):
+
+```
+PFX U Y 1
+PFX U   0     un       .
+```
+
+means a prefix that is marked with "U" in the dict file, combination is
+possible with other pre/suffixes (Y) and there is one line (1).
+The field is the option name (PFX), the flag (U) and the stripping at
+beginning/end of the word (here 0, so no stripping), then the affix (un) and finally the condition (., all).
+
+For example, an entry in the dictionary
+
+verwertbar/AU
+
+where U = means that also "unverwertbar" is correct 
+where A  = "-bare", "barer", "baren", "barem", "bares" are correct words.
+
+For compound words, the definitions are i/j, e.g. 
+
+Arbeits/hij
+
+while h says that it needs a sort of affix (in total there are 2176 hij words in the dict that only are correct because they are compound words)
+
+doktorieren/DIXY
+
+
+where D = "doktorierend doktorierende doktorierendem"
+where I = "doktoriere"
+where O = "doktoriertes doktorierten doktorierter doktoriertem" => no adjektiv!
+
+
+abkapseln/SJozm
+
+where S = "Abkapselns"
+where J = "Abkapselung Abkapselungen Abkapslung"
+where m = "-abkapselns"
+
+
+Stand/STmij
+
+where S = "Stands"
+where T = "Standes"
+
+Stanz/mij
+
+
+Spann/SEmij
+
+
+where S = "Spanns"
+where E = "Spanne"
+
+
+lutschen/DIXY
+
+
+also::
+
+gefletscht/A
+
+
+Stoff/EPSTmij
+
+
+where E = "Stoffe"
+where P = "Stoffen"
+where S = "Stoffs"
+where T = "Stoffes"
+where m = "-stoff"  (prefix only)
+
+
+zypressenwald/STozm
+
+-> o = only in compound
+
+
+Drehinversionsachse
+ 
+needs the following:
+
+dreh/hij
+inversions/hke
+achse/Nozm
+
+where h = needs affix (wont work without an affix)
+where i = -coyf     PFX
+where j = xoc (onlyincompound, compoundmiddle, compoundbegin)       SFX
+where k = coy (compoundpermit flag, onlyincompound, compoundmiddle) PFX
+where e = yoc (compoundpermit flag, onlyincompound, compoundmiddle) SFX
+
+-> hke does not allow it to be at the start ... 
+-> hij does not allow it to be in the middle ... 
+
+Gruppensignaturschema needs the following
+
+Gruppen/hij
+signatur/hke
+schema/Nozm
+
+
+Programm/EPSm
+Programm/Tmij
+
+
+where E = "Programme"
+where P = "Programmen"
+where S = "Programms"
+where m = "-programm"
+
+where T = "Programmes"
+where mij = start is possible
+
+
