@@ -1,0 +1,27 @@
+Hunspell uses a dictionary (dic) of words and a rule set to build words (.aff).
+
+See doc/hunspell_notes.txt for more information.
+
+https://packages.debian.org/search?keywords=hunspell
+
+get the latest dictionaries from 
+
+- https://packages.debian.org/sid/hunspell-de-de-frami 
+- https://packages.debian.org/sid/hunspell-de-med
+
+and copy to hunspell/de and hunspell/en
+
+# concat files
+
+cat hunspell/de/de_DE_frami.dic \
+    hunspell/delta_dic.med hunspell/delta_dic.hr \
+    hunspell/delta_dic.med > hunspell/de_DE_frami_nhr2.dic
+
+# fix some
+cat hunspell/de_DE_frami_nhr2.dic \
+    sed 's_editieren/BDIOXY_editieren/BUDIOXY_'  | \
+    sed 's_intonieren/DIOXY_intonieren/BDIOXY_' | \
+    sed 's_signatur/Pozm_signatur/Pozmcy_' > hunspell/de_DE_frami_nhr_final.dic
+
+cp hunspell/de/de_DE_frami.aff hunspell/de_DE_frami_nhr_final.aff
+
