@@ -14,7 +14,7 @@ and copy to hunspell/de and hunspell/en
 # concat files
 
 cat hunspell/de/de_DE_frami.dic \
-    hunspell/delta_dic.med hunspell/delta_dic.hr \
+    hunspell/delta_dic.automated hunspell/delta_dic.hr \
     hunspell/delta_dic.med > hunspell/de_DE_frami_nhr2.dic
 
 # fix some
@@ -24,4 +24,7 @@ cat hunspell/de_DE_frami_nhr2.dic \
     sed 's_signatur/Pozm_signatur/Pozmcy_' > hunspell/de_DE_frami_nhr_final.dic
 
 cp hunspell/de/de_DE_frami.aff hunspell/de_DE_frami_nhr_final.aff
+
+
+the data in the automated dic were generated with the code/reparse_hspell.py script.
 
